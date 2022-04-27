@@ -1,0 +1,25 @@
+---
+#java route
+jvm_home: "/usr/lib/jvm"
+
+# hadoop basic vars
+
+download_path: "/home/ubuntu"
+hadoop_version: "3.2.2"
+hadoop_path: "/home/hdfs"
+hadoop_config_path: "/home/hdfs/hadoop-3.2.2/etc/hadoop"
+hadoop_log_path:  "/home/hdfs/hadoop-3.2.2/logs"
+hadoop_tmp: "/home/hdfs/tmp"
+#hadoop_dfs_name: "/home/hadoop/dfs/name"
+#hadoop_dfs_data: "/home/hadoop/dfs/data"
+hadoop_dfs_name: "file:/home/hdfs/dfs/name"
+hadoop_dfs_data: "file:/home/hdfs/dfs/data"
+hadoop_dfs_replication: 1
+hdfs_port: 9000
+
+
+mapreduce_framework_name: "yarn"
+
+yarn_nodemanager_aux_services: "mapreduce_shuffle"
+yarn_nodemanager_auxservices_mapreduce_shuffle_class: "org.apache.hadoop.mapred.ShuffleHandler"
+

@@ -1,0 +1,15 @@
+---
+- name: Usar Blockinfile para añadir lineas a un archivo
+  hosts: all
+  tasks:
+    - name: "Añadir ansible master y nodo a /etc/hosts"
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          # Ansible manager
+          172.16.2.16
+          # Test ansible
+          172.16.2.197
+
+        marker: "# {mark} ANSIBLE MANAGED BLOCK Ansible master y nodesgroup"
+

@@ -1,0 +1,15 @@
+---
+- hosts: all 
+  become: true 
+  vars_files:
+   - group_vars/usuario.yml
+   - group_vars/var_basic.yml
+  vars:
+     add_user: true
+     generate_key: true
+  roles:
+    - usuario
+    - autorizacion
+    - java
+    - hadoop
+    - arranque

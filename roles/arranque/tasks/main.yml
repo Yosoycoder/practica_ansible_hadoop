@@ -1,0 +1,10 @@
+---
+#Damos formato al nodo e iniciamos los agentes
+- name: Format node
+  shell: /home/hdfs/hadoop-3.2.2/bin/hdfs namenode -format
+#Arrancamos dfs
+- name: Start dfs
+  shell: /home/hdfs/hadoop-3.2.2/sbin/start-dfs.sh
+#Iniciamos yarn
+- name: Start yarn
+  shell: /home/hdfs/hadoop-3.2.2/sbin/start-yarn.sh

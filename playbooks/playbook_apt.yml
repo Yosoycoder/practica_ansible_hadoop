@@ -1,0 +1,11 @@
+---
+- name: Template a file to /home/ubuntu/sample-template.txt
+  hosts: all
+  tasks:
+    - name: Install nginx
+      apt:
+        name: "{{ paquetes }}"
+        update_cache: yes
+        state: present
+
+

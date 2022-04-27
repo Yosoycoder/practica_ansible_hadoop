@@ -1,0 +1,11 @@
+---
+- name: Get Public From Hadoop Master
+  fetch: 
+    src: /home/{{ user }}/.ssh/id_rsa.pub
+    dest: /home/id_{{ user }}.pub
+    flat: yes
+
+- name: Add Hadoop Public Key 
+  authorized_key: 
+    user={{ user }} 
+    key="{{ lookup('file', '/home/id_{{user}}.pub') }}"

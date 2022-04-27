@@ -1,0 +1,49 @@
+---
+- name: Create Hadoop Path
+  file: 
+    path: "{{ hadoop_path }}"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    state: directory
+    mode: 0755
+
+- name: Create Hadoop Log Path
+  file:
+    path: "{{ hadoop_log_path }}"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    state: directory
+    mode: 0755
+
+
+#Con ese primer modulo creo el directorio donde voy a instalar hadoop
+#Con el segundo el directorio de los logs
+#Ahora copiamos Hadoop desde el equipo y lo descomprimimos
+- name: Copy Hadoop
+  copy: src={{ download_path }}/hadoop-3.2.2.tar.gz dest={{ hadoop_path }} owner={{ user }} mode=755
+  
+- name: Unzip Hadoop
+  shell: "tar zxf {{ hadoop_path }}/hadoop-3.2.2.tar.gz -C {{ hadoop_path }}"
+
+#Por ultimo lo configuramos copiando los templates que tenemos preparados
+
+- name: Copy Hadoop core-site.xml
+  template: src=core-site.xml dest={{ hadoop_config_path }} mode=644 owner={{ user }} group = {{ group }}
+
+- name: Copy Hadoop hdfs-site.xml
+  template: src=hdfs-site.xml dest={{ hadoop_config_path }} mode=644 owner={{ user }} group = {{ group }}
+
+- name: Copy Hadoop mapred-site.xml
+  template: src=mapred-site.xml dest={{ hadoop_config_path }} mode=644 owner={{ user }} group = {{ group }}
+
+- name: Copy Hadoop yarn-site.xml
+  template: src=yarn-site.xml dest={{ hadoop_config_path }} mode=644 owner={{ user }} group = {{ group }}
+
+- name: Copy Hadoop Env Script
+  template: src=hadoop_env.sh dest=/etc/profile.d/ mode=755
+
+#Hacemos un source con shell para cargar el entorno que hemos copiado
+- name: Set Hadoop Env
+  shell: source /etc/profile.d/hadoop_env.sh
+  args:
+    executable: /bin/bash

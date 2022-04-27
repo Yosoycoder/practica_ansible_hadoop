@@ -1,0 +1,6 @@
+---
+- name: Stop dfs
+  shell: /home/hdfs/hadoop-3.2.2/sbin/stop-dfs.sh
+#Arrancamos dfs de nuevo
+- name: Start dfs
+  shell: /home/hdfs/hadoop-3.2.2/sbin/start-dfs.sh

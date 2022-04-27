@@ -1,0 +1,23 @@
+--
+##Comando apt para instalar openjdk
+- name: Install OpenJdk.
+  apt:
+    name: openjdk-8-jdk
+    state: present
+#Copio con template 
+- name: Copy Java Home Script
+  template: src=java_home.sh dest=/etc/profile.d
+#Hago un shell con source para que lo ejecute
+- name: Set Java Home Script
+  shell: source /etc/profile.d/java_home.sh
+
+#Instalo ssh y pdsh
+- name: Install ssh
+  apt:
+    name:ssh
+    state: present
+
+- name: Install psdh
+  apt:
+    name: pdsh
+    state: present
