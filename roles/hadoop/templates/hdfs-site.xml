@@ -24,6 +24,6 @@
   </property>
   <property>
     <name>dfs.replication</name>
-    <value>{{ hadoop_dfs_replication }}</name>
+    <value>{{ hadoop_dfs_replication }}</value>
   </property>
 </configuration>
